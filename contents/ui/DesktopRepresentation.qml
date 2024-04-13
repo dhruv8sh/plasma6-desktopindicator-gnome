@@ -2,8 +2,6 @@ import QtQuick
 import org.kde.plasma.components
 import org.kde.kirigami as Kirigami
 import org.kde.plasma.plasmoid
-// import QtQml.Models
-// import org.kde.taskmanager as TaskManager
 
 Rectangle {
     id: container
@@ -11,10 +9,7 @@ Rectangle {
     height: plasmoid.configuration.dotSizeCustom
     property int pos
     property int size: plasmoid.configuration.dotSizeCustom
-    property bool boldOnActive: plasmoid.configuration.boldOnActive
-    property bool italicOnActive: plasmoid.configuration.italicOnActive
-    property bool highlightOnActive: plasmoid.configuration.highlightOnActive
-    property bool isAddButton: false
+    property real spacing: plasmoid.configuration.spacingFactor
     property bool isActive: false
     color: Kirigami.Theme.highlightColor
     radius: height * 0.5
@@ -54,15 +49,15 @@ Rectangle {
             duration: 300
         }
     }
-
     function activate(yes, to) {
         isActive = yes
         container.states = yes ? "bigger" : "default"
         opacity = yes ? 1 : 0.5
-        width  = yes && isHorizontal  ? size * 2 : size
-        height = yes && !isHorizontal ? size * 2 : size
-        x = pos * height * 1
-        if( to < pos ) x = (pos+1) * height * 1
-        // console.log(to+" "+(to<=pos ? pos: pos+1)+" "+x)
+        width  = yes &&  isHorizontal ? (size * 2) + spacing : size
+        height = yes && !isHorizontal ? (size * 2) + spacing : size
+        x = isHorizontal  ? (pos+1) * size * spacing : (root.width / 2)-(size/2)
+        y = !isHorizontal ? (pos+1) * size * spacing : (root.height/ 2)-(size/2)
+        if( to < pos &&  isHorizontal ) x = (pos+2) * size * spacing
+        if( to < pos && !isHorizontal ) y = (pos+2) * size * spacing
     }
 }

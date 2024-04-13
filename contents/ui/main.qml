@@ -13,10 +13,9 @@ PlasmoidItem {
     preferredRepresentation: fullRepresentation
     property alias current: pagerModel.currentPage
     property int wheelDelta: 0
+    property real spacing: plasmoid.configuration.spacingFactor
     property bool isHorizontal: plasmoid.formFactor != PlasmaCore.Types.Vertical
-    property bool isSingleRow: plasmoid.configuration.singleRow
     property bool wrapOn: plasmoid.configuration.desktopWrapOn
-    property int addDesktop: plasmoid.configuration.showAddDesktop && isSingleRow ? 1 : 0
 
 
     Item {
@@ -25,20 +24,19 @@ PlasmoidItem {
         anchors.centerIn: parent
         Repeater {
             id: repeater1
-            model: pagerModel.count + addDesktop
+            model: pagerModel.count
             DesktopRepresentation {
                 pos: index
-                isAddButton: addDesktop === 1 && index === pagerModel.count
                 height: plasmoid.configuration.dotSizeCustom
-                width: height
+                width: plasmoid.configuration.dotSizeCustom
 
             }
             onCountChanged: root.updateRepresentation()
         }
     }
     anchors.fill: parent
-    Layout.minimumWidth : isHorizontal ? (pagerModel.count+1) * plasmoid.configuration.dotSizeCustom * 1.5 : grid.implicitWidth
-    Layout.minimumHeight: isHorizontal ? grid.implicitHeight : (pagerModel.count+1) * plasmoid.configuration.dotSizeCustom * 1.5
+    Layout.minimumWidth : isHorizontal ? (pagerModel.count+1) * plasmoid.configuration.dotSizeCustom * spacing : grid.implicitWidth
+    Layout.minimumHeight: isHorizontal ? grid.implicitHeight : (pagerModel.count+1) * plasmoid.configuration.dotSizeCustom * spacing
 
     PagerModel {
         id: pagerModel
@@ -105,20 +103,18 @@ PlasmoidItem {
             if (item ) {
                 if( i == current ){
                     item.activate(true, current);
-                    // item.width = item.height*2
                 }
                 else {
-                    // item.width = item.height
                     item.activate(false, current);
                 }
             } else {
                 console.error("Item or label is undefined at index " + i);
             }
         }
-        // grid.anchors.centerIn = root
     }
     onIsHorizontalChanged : updateRepresentation()
-    onIsSingleRowChanged: updateRepresentation()
+    onWidthChanged : updateRepresentation()
+    onHeightChanged : updateRepresentation()
     Plasmoid.contextualActions: [
         PlasmaCore.Action {
             text: i18n("Add Virtual Desktop")
