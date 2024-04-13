@@ -1,4 +1,4 @@
-# Desktop Indicator for Plasma 6
+# Ginti - Desktop Indicator for Plasma 6
 A simple applet to display current desktop status.
 
 ## Screenshots
