@@ -1,6 +1,5 @@
 # Desktop Indicator for Plasma 6
 A simple applet to display current desktop status.
-This is almost a complete refactor of the Plasma 5 applet by [DualityKyle](https://github.com/DualityKyle/plasma-desktop-indicator).
 
 ## Features:
 * <b>NEW:</b> Support for Vertical Panels
