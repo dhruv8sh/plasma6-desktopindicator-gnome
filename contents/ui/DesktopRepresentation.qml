@@ -55,9 +55,9 @@ Rectangle {
         opacity = yes ? 1 : 0.5
         width  = yes &&  isHorizontal ? (size * 2) + spacing : size
         height = yes && !isHorizontal ? (size * 2) + spacing : size
-        x = isHorizontal  ? (pos+1) * size * spacing : (root.width / 2)-(size/2)
-        y = !isHorizontal ? (pos+1) * size * spacing : (root.height/ 2)-(size/2)
-        if( to < pos &&  isHorizontal ) x = (pos+2) * size * spacing
-        if( to < pos && !isHorizontal ) y = (pos+2) * size * spacing
+        x = isHorizontal  ? pos * size * spacing : (root.width / 2)-(size/2)
+        y = !isHorizontal ? pos * size * spacing : (root.height/ 2)-(size/2)
+        if( to < pos &&  isHorizontal ) x = (pos+1) * size * spacing
+        if( to < pos && !isHorizontal ) y = (pos+1) * size * spacing
     }
 }
