@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kcfg xmlns="http://www.kde.org/standards/kcfg/1.0"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.kde.org/standards/kcfg/1.0
+      http://www.kde.org/standards/kcfg/1.0/kcfg.xsd">
+  <kcfgfile name=""/>
+
+  <group name="General">
+    <entry name="middleButtonCommand" type="String">
+      <label>What happens when you middle click on the widget.</label>
+      <default>Grid View</default>
+    </entry>
+    <entry name="desktopWrapOn" type="Bool">
+      <label>Whether the desktop navigation stops at the end or wraps around.</label>
+      <default>true</default>
+    </entry>
+    <entry name="boldOnActive" type="Bool">
+      <label>Whether the indicator is bold when active.</label>
+      <default>false</default>
+    </entry>
+    <entry name="italicOnActive" type="Bool">
+      <label>Whether the indicator is italic when active.</label>
+      <default>false</default>
+    </entry>
+    <entry name="highlightOnActive" type="Bool">
+      <label>Whether the indicator is highlight when active.</label>
+      <default>false</default>
+    </entry>
+    <!--entry name="showOnlyWithWindows" type="Bool">
+      <label>Whether the indicator shown when window is active.</label>
+      <default>false</default>
+    </entry-->
+    <entry name="showAddDesktop" type="Bool">
+      <label>Whether the widget displays an 'Add Desktop' button.</label>
+      <default>false</default>
+    </entry>
+    <entry name="singleRow" type="Bool">
+      <label>Whether the widget displays in a single row, or follows Plasma's configuration.</label>
+      <default>true</default>
+    </entry>
+    <entry name="dotSizeCustom" type="Int">
+      <label>For fixed indicator dot size, select the size in pixels.</label>
+      <default>12</default>
+    </entry>
+    <entry name="spacingHorizontal" type="Int">
+      <label>Select spacing betwwen the dots horizontally.</label>
+      <default>4</default>
+    </entry>
+    <entry name="spacingVertical" type="Int">
+      <label>Select spacing between the dots vertically.</label>
+      <default>4</default>
+    </entry>
+    <entry name="indicatorType" type="Enum">
+      <label>Choose whether to use numbered dot indicator, or a custom character.</label>
+      <default>0</default>
+    </entry>
+    <entry name="activeText" type="string">
+      <label>The unicode character used for the active desktop indicator</label>
+      <default>●</default>
+    </entry>
+    <entry name="inactiveText" type="string">
+      <label>The unicode character used for the inactive desktop indicator</label>
+      <default>○</default>
+    </entry>
+    <entry name="radiusFactor" type="Double">
+      <label>Radius</label>
+      <default>0.6</default>
+    </entry>
+  </group>
+</kcfg>

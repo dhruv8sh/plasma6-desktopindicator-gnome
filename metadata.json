@@ -1,0 +1,26 @@
+{
+    "KPlugin": {
+        "Authors": [
+            {
+                "Email": "dhruv8sh@proton.me",
+                "Name": "Dhruvesh Surolia"
+            }
+        ],
+        "Category": "Windows and Tasks",
+        "Description": "Simple display for virtual desktops",
+        "EnabledByDefault": true,
+        "Icon": "preferences-desktop-virtual",
+        "Id": "org.kde.plasma.plasm6desktopindicator2",
+        "License": "GPL-3.0+",
+        "Name": "Desktop GIndicator",
+        "ServiceTypes": [
+            "Plasma/Applet"
+        ],
+        "Version": "3.0",
+        "Website": "https://github.com/dhruv8sh/plasma6-desktop-indicator"
+    },
+    "X-Plasma-Provides": [
+        "org.kde.plasma.virtualdesktops"
+    ],
+    "X-Plasma-API-Minimum-Version": "6.0"
+}
