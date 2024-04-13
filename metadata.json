@@ -10,14 +10,14 @@
         "Description": "Simple display for virtual desktops",
         "EnabledByDefault": true,
         "Icon": "preferences-desktop-virtual",
-        "Id": "org.kde.plasma.plasm6desktopindicator2",
+        "Id": "org.kde.plasma.ginti",
         "License": "GPL-3.0+",
-        "Name": "Desktop GIndicator",
+        "Name": "Ginti",
         "ServiceTypes": [
             "Plasma/Applet"
         ],
         "Version": "3.0",
-        "Website": "https://github.com/dhruv8sh/plasma6-desktop-indicator"
+        "Website": "https://github.com/dhruv8sh/plasma6-desktopindicator-gnome"
     },
     "X-Plasma-Provides": [
         "org.kde.plasma.virtualdesktops"
