@@ -17,7 +17,7 @@ Rectangle {
         anchors.fill: parent
         hoverEnabled: true
         acceptedButtons: Qt.LeftButton
-        onClicked: isAddButton ? pagerModel.addDesktop() : pagerModel.changePage(pos)
+        onClicked: pagerModel.changePage(pos)
         onContainsMouseChanged: {
             if( containsMouse ) container.opacity = 0.3
             else container.opacity = isActive ? 1 : 0.5
@@ -53,11 +53,11 @@ Rectangle {
         isActive = yes
         container.states = yes ? "bigger" : "default"
         opacity = yes ? 1 : 0.5
-        width  = yes &&  isHorizontal ? (size * 2) + spacing : size
-        height = yes && !isHorizontal ? (size * 2) + spacing : size
-        x = isHorizontal  ? pos * size * spacing : (root.width / 2)-(size/2)
-        y = !isHorizontal ? pos * size * spacing : (root.height/ 2)-(size/2)
-        if( to < pos &&  isHorizontal ) x = (pos+1) * size * spacing
-        if( to < pos && !isHorizontal ) y = (pos+1) * size * spacing
+        width  = yes &&  isHorizontal ? size*2 : size
+        height = yes && !isHorizontal ? size*2 : size
+        x =  isHorizontal ? (pos * (size + spacing)) : (root.width / 2)-(size/2)
+        y = !isHorizontal ? (pos * (size + spacing)) : (root.height/ 2)-(size/2)
+        if( to < pos &&  isHorizontal ) x = ((pos+1)*(size+spacing)) - spacing
+        if( to < pos && !isHorizontal ) y = ((pos+1)*size*spacing) - spacing
     }
 }

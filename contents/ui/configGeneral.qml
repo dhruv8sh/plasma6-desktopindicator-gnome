@@ -36,13 +36,12 @@ QtLayouts.ColumnLayout {
         }
         QtLayouts.ColumnLayout{
             Kirigami.FormData.label: i18n("Spacing radius:")
-            Kirigami.FormData.buddyFor: radiusSlider
+            Kirigami.FormData.buddyFor: spacingSlider
             QC2.Slider {
                 id: spacingSlider
-                enabled: highlightOnActive.checked
                 height: 30
                 from: 0
-                to: 1
+                to: 20
                 stepSize: 0.1
             }
         }
@@ -61,18 +60,6 @@ QtLayouts.ColumnLayout {
                 }
                 from: 6
                 to: 72
-            }
-        }
-        QtLayouts.RowLayout {
-            Kirigami.FormData.label: i18n("Horizontal Spacing:")
-
-            QC2.SpinBox {
-                id: spacingHorizontal
-                textFromValue: function(value) {
-                    return i18n("%1 px", value)
-                }
-                from: 0
-                to: 30
             }
         }
     }

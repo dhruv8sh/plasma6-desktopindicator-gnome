@@ -35,8 +35,8 @@ PlasmoidItem {
         }
     }
     anchors.fill: parent
-    Layout.minimumWidth : isHorizontal ? (pagerModel.count+1) * plasmoid.configuration.dotSizeCustom * spacing : grid.implicitWidth
-    Layout.minimumHeight: isHorizontal ? grid.implicitHeight : (pagerModel.count+1) * plasmoid.configuration.dotSizeCustom * spacing
+    Layout.minimumWidth : isHorizontal ? (pagerModel.count+1) * (plasmoid.configuration.dotSizeCustom + spacing) : grid.implicitWidth
+    Layout.minimumHeight: isHorizontal ? grid.implicitHeight : (pagerModel.count+1) * (plasmoid.configuration.dotSizeCustom + spacing)
 
     PagerModel {
         id: pagerModel
