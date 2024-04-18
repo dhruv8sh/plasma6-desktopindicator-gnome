@@ -58,6 +58,6 @@ Rectangle {
         x =  isHorizontal ? (pos * (size + spacing)) : (root.width / 2)-(size/2)
         y = !isHorizontal ? (pos * (size + spacing)) : (root.height/ 2)-(size/2)
         if( to < pos &&  isHorizontal ) x = ((pos+1)*(size+spacing)) - spacing
-        if( to < pos && !isHorizontal ) y = ((pos+1)*size*spacing) - spacing
+        if( to < pos && !isHorizontal ) y = ((pos+1)*(size+spacing)) - spacing
     }
 }
