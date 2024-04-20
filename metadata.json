@@ -16,7 +16,7 @@
         "ServiceTypes": [
             "Plasma/Applet"
         ],
-        "Version": "0.4",
+        "Version": "0.5",
         "Website": "https://github.com/dhruv8sh/plasma6-desktopindicator-gnome"
     },
     "X-Plasma-Provides": [
