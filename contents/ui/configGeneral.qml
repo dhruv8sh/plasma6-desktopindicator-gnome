@@ -2,7 +2,9 @@ import QtQuick
 import QtQuick.Controls as QC2
 import QtQuick.Layouts as QtLayouts
 import org.kde.kirigami as Kirigami
+import org.kde.kquickcontrols as KQuickControls
 import org.kde.plasma.plasmoid
+import QtQuick.Layouts
 
 QtLayouts.ColumnLayout {
     id: generalPage
@@ -13,6 +15,9 @@ QtLayouts.ColumnLayout {
     property alias cfg_desktopWrapOn      : desktopWrapOn.checked
     property alias cfg_spacingFactor      : spacingSlider.value
     property alias cfg_dotSizeCustom      : dotSizeCustom.value
+    property alias cfg_customColorsEnabled: customColorsEnabled.checked
+    property alias cfg_activeColor        : activeColor.color
+    property alias cfg_activeSizeOffset   : activeSizeOffset.value
 
     Kirigami.FormLayout {
 
@@ -52,14 +57,38 @@ QtLayouts.ColumnLayout {
             Kirigami.FormData.label: i18n("Indicator Size:")
             QC2.SpinBox {
                 id: dotSizeCustom
-                textFromValue: function(value) {
-                    return i18n("%1 px", value)
-                }
-                valueFromText: function(text) {
-                    return parseInt(text)
-                }
                 from: 6
                 to: 72
+            }
+            QC2.Label {
+                text: "px."
+            }
+        }
+        QtLayouts.RowLayout {
+            Kirigami.FormData.label: i18n("Active Indicator Size Offset:")
+            QC2.SpinBox {
+                id: activeSizeOffset
+                from: 1-dotSizeCustom.value
+                to: 1000
+            }
+            QC2.Label {
+                text: "px."
+            }
+        }
+        Item {
+            Kirigami.FormData.isSection: true
+        }
+        QC2.CheckBox {
+            id: customColorsEnabled
+            Kirigami.FormData.label: i18n("Custom colors:")
+        }
+        RowLayout{
+            KQuickControls.ColorButton {
+                id: activeColor
+                enabled: customColorsEnabled.checked
+            }
+            QC2.Label {
+                text: "Active Color"
             }
         }
     }

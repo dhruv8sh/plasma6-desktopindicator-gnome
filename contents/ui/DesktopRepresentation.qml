@@ -11,7 +11,7 @@ Rectangle {
     property int size: plasmoid.configuration.dotSizeCustom
     property real spacing: plasmoid.configuration.spacingFactor
     property bool isActive: false
-    color: Kirigami.Theme.highlightColor
+    color: plasmoid.configuration.customColorsEnabled ? plasmoid.configuration.activeColor : Kirigami.Theme.highlightColor
     radius: height * 0.5
     MouseArea {
         anchors.fill: parent
@@ -57,7 +57,17 @@ Rectangle {
         height = yes && !isHorizontal ? size*2 : size
         x =  isHorizontal ? (pos * (size + spacing)) : (root.width / 2)-(size/2)
         y = !isHorizontal ? (pos * (size + spacing)) : (root.height/ 2)-(size/2)
+        if( yes ) {
+            if( isHorizontal ) {
+                height += plasmoid.configuration.activeSizeOffset
+                y -= plasmoid.configuration.activeSizeOffset / 2
+            } else {
+                width += plasmoid.configuration.activeSizeOffset
+                x -= plasmoid.configuration.activeSizeOffset / 2
+            }
+        }
         if( to < pos &&  isHorizontal ) x = ((pos+1)*(size+spacing)) - spacing
         if( to < pos && !isHorizontal ) y = ((pos+1)*(size+spacing)) - spacing
+
     }
 }
