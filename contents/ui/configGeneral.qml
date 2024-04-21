@@ -17,7 +17,8 @@ QtLayouts.ColumnLayout {
     property alias cfg_dotSizeCustom      : dotSizeCustom.value
     property alias cfg_customColorsEnabled: customColorsEnabled.checked
     property alias cfg_activeColor        : activeColor.color
-    property alias cfg_activeSizeOffset   : activeSizeOffset.value
+    property alias cfg_activeSizeH  : activeSizeOffsetH.value
+    property alias cfg_activeSizeW  : activeSizeOffsetW.value
 
     Kirigami.FormLayout {
 
@@ -65,11 +66,19 @@ QtLayouts.ColumnLayout {
             }
         }
         QtLayouts.RowLayout {
-            Kirigami.FormData.label: i18n("Active Indicator Size Offset:")
+            Kirigami.FormData.label: i18n("Active Indicator:")
             QC2.SpinBox {
-                id: activeSizeOffset
-                from: 1-dotSizeCustom.value
-                to: 1000
+                id: activeSizeOffsetW
+                from: 1
+                to: 100
+            }
+            QC2.Label {
+                text: "x"
+            }
+            QC2.SpinBox {
+                id: activeSizeOffsetH
+                from: 1
+                to: 100
             }
             QC2.Label {
                 text: "px."

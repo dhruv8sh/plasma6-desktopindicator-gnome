@@ -8,9 +8,6 @@ Rectangle {
     z: 5
     height: plasmoid.configuration.dotSizeCustom
     property int pos
-    property int size: plasmoid.configuration.dotSizeCustom
-    property real spacing: plasmoid.configuration.spacingFactor
-    property bool isActive: false
     color: plasmoid.configuration.customColorsEnabled ? plasmoid.configuration.activeColor : Kirigami.Theme.highlightColor
     radius: height * 0.5
     MouseArea {
@@ -20,10 +17,19 @@ Rectangle {
         onClicked: pagerModel.changePage(pos)
         onContainsMouseChanged: {
             if( containsMouse ) container.opacity = 0.3
-            else container.opacity = isActive ? 1 : 0.5
+            else container.opacity = current == pos ? 1 : 0.5
         }
     }
-
+    Behavior on x {
+        NumberAnimation {
+            duration: 300
+        }
+    }
+    Behavior on y {
+        NumberAnimation {
+            duration: 300
+        }
+    }
     Behavior on width {
         NumberAnimation {
             duration: 300
@@ -39,35 +45,51 @@ Rectangle {
             duration: 300
         }
     }
-    Behavior on x {
-        NumberAnimation {
-            duration: 300
-        }
-    }
-    Behavior on y {
-        NumberAnimation {
-            duration: 300
-        }
-    }
-    function activate(yes, to) {
-        isActive = yes
-        container.states = yes ? "bigger" : "default"
-        opacity = yes ? 1 : 0.5
-        width  = yes &&  isHorizontal ? size*2 : size
-        height = yes && !isHorizontal ? size*2 : size
-        x =  isHorizontal ? (pos * (size + spacing)) : (root.width / 2)-(size/2)
-        y = !isHorizontal ? (pos * (size + spacing)) : (root.height/ 2)-(size/2)
-        if( yes ) {
-            if( isHorizontal ) {
-                height += plasmoid.configuration.activeSizeOffset
-                y -= plasmoid.configuration.activeSizeOffset / 2
-            } else {
-                width += plasmoid.configuration.activeSizeOffset
-                x -= plasmoid.configuration.activeSizeOffset / 2
+    states: [
+        State {
+            name: "horizontalActive"
+            when: isHorizontal && current == pos
+            PropertyChanges{
+                target: container
+                y: (root.height - height)/2
+                x: pos * (size+spacing)
+                width: plasmoid.configuration.activeSizeW
+                height: plasmoid.configuration.activeSizeH
+                opacity: 1
+            }
+        },State {
+            name: "horizontalInactive"
+            when: isHorizontal && current != pos
+            PropertyChanges{
+                target: container
+                y: (root.height - height)/2
+                x: current < pos ? ((pos-1)*(size+spacing)) + plasmoid.configuration.activeSizeW + spacing : pos * (size+spacing)
+                height: size
+                width: size
+                opacity: 0.5
+            }
+        },State {
+            name: "verticalActive"
+            when: !isHorizontal && current == pos
+            PropertyChanges{
+                target: container
+                y: pos * (size+spacing)
+                x: (root.width - width)/2
+                width: plasmoid.configuration.activeSizeH
+                height: plasmoid.configuration.activeSizeW
+                opacity: 1
+            }
+        },State {
+            name: "verticalInactive"
+            when: !isHorizontal && current != pos
+            PropertyChanges{
+                target: container
+                y : current < pos ? ((pos-1)*(size+spacing)) + plasmoid.configuration.activeSizeW + spacing : pos * (size+spacing)
+                x: (root.width - width)/2
+                width: size
+                height: size
+                opacity: 0.5
             }
         }
-        if( to < pos &&  isHorizontal ) x = ((pos+1)*(size+spacing)) - spacing
-        if( to < pos && !isHorizontal ) y = ((pos+1)*(size+spacing)) - spacing
-
-    }
+    ]
 }
