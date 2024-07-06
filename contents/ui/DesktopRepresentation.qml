@@ -22,12 +22,12 @@ Rectangle {
     }
     Behavior on x {
         NumberAnimation {
-            duration: 300
+            duration: isHorizontal?300:0
         }
     }
     Behavior on y {
         NumberAnimation {
-            duration: 300
+            duration: isHorizontal?0:300
         }
     }
     Behavior on width {
@@ -51,10 +51,10 @@ Rectangle {
             when: isHorizontal && current == pos
             PropertyChanges{
                 target: container
-                y: (root.height - height)/2
-                x: pos * (size+spacing)
                 width: plasmoid.configuration.activeSizeW
                 height: plasmoid.configuration.activeSizeH
+                y: (root.height - height)/2
+                x: pos * (size+spacing)
                 opacity: 1
             }
         },State {
@@ -62,10 +62,10 @@ Rectangle {
             when: isHorizontal && current != pos
             PropertyChanges{
                 target: container
-                y: (root.height - height)/2
-                x: current < pos ? ((pos-1)*(size+spacing)) + plasmoid.configuration.activeSizeW + spacing : pos * (size+spacing)
                 height: size
                 width: size
+                y: (root.height - height)/2
+                x: current < pos ? ((pos-1)*(size+spacing)) + plasmoid.configuration.activeSizeW + spacing : pos * (size+spacing)
                 opacity: 0.5
             }
         },State {
@@ -73,10 +73,10 @@ Rectangle {
             when: !isHorizontal && current == pos
             PropertyChanges{
                 target: container
-                y: pos * (size+spacing)
-                x: (root.width - width)/2
                 width: plasmoid.configuration.activeSizeH
                 height: plasmoid.configuration.activeSizeW
+                y: pos * (size+spacing)
+                x: (root.width - width)/2
                 opacity: 1
             }
         },State {
@@ -92,4 +92,18 @@ Rectangle {
             }
         }
     ]
+    Component.onCompleted: {
+        if(current==pos)
+            if(isHorizontal) {
+                y= (root.height - height)/2
+                x= pos * (size+spacing)
+                width= plasmoid.configuration.activeSizeW
+                height= plasmoid.configuration.activeSizeH
+            } else {
+                y= pos * (size+spacing)
+                x= (root.width - width)/2
+                width= plasmoid.configuration.activeSizeH
+                height= plasmoid.configuration.activeSizeW
+            }
+    }
 }
