@@ -1,3 +1,5 @@
+# !!Further development has now moved to [kara](https://github.com/dhruv8sh/kara/)
+
 # Ginti - Desktop Indicator for Plasma 6
 A simple applet to display current desktop status.
 
